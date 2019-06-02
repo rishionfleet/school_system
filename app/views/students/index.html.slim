@@ -1,0 +1,47 @@
+div
+  div.text-danger
+    - if flash[:notice]
+      = flash[:notice]
+
+  h3
+    | Registered Student's Details:
+  br
+
+  | Please click on the student's name to get more information:
+  br
+  br
+
+  table.table-bordered.table-hover
+    thead
+      tr
+        th
+          | S. No.
+        th
+          | Name
+        th
+          | Roll Number
+        th
+          | City
+        th
+          | Total Subjects
+        th
+          | Total Teachers
+    tbody
+      - @students.each.with_index do |s, i|
+        tr
+          td
+            = i+1
+          td
+            = link_to s.name, student_path(s.id)
+          td
+            = s.roll_number
+          td
+            = s.city
+          td
+            = s.subjects.count
+          td
+            = s.teachers.count
+
+  br
+  br
+  = link_to "Back", home_show_path

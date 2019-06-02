@@ -1,0 +1,44 @@
+div
+  div.text-success
+    - if flash[:notice]
+      = flash[:notice]
+
+  h2
+    = @student.name
+    = link_to "Delete Student", student_path(@student.id), method: "delete", class: "btn btn-danger delete-record"
+    button.btn.btn-primary.delete-record type="button" data-toggle="modal" data-target="#edit-student"
+      | Edit Student
+    // = link_to "Edit Student", student_path(@student.id), method: "patch", class: "btn btn-primary delete-record", type="button" data-toggle="modal" data-target="#edit-student"
+  h4
+    | (#{@student.roll_number}, #{@student.city})
+  br
+
+  #edit-student.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          .modal-title
+            h4
+              | Edit student's details:
+          .modal-body
+            = render "students/edit"
+
+  p
+    | Subject(s) enrolled by #{@student.name}: 
+    = @student.subjects.pluck(:name).join(", ")
+
+    br
+    br
+
+    | Teacher(s) for #{@student.name}: 
+    = @student.teachers.pluck(:name).join(", ")
+
+    br
+    br
+
+    | Please click here to see the full details of the teachers: 
+    = link_to "View Teachers", teachers_details_student_path(@student.id), class: "btn btn-primary"
+
+  br
+  br
+  = link_to "Back", students_path

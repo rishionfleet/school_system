@@ -1,0 +1,27 @@
+div
+  h2
+    = @teacher.name
+    = link_to "Delete Teacher", teacher_path(@teacher.id), method: "delete", class: "btn btn-danger delete-record"
+  h4
+    | (#{@teacher.education})
+  br
+
+  p
+    | Subject(s) taught by #{@teacher.name}: 
+    = @teacher.subjects.pluck(:name).join(", ")
+
+    br
+    br
+
+    | Student(s) under #{@teacher.name}: 
+    = @teacher.students.pluck(:name).join(", ")
+
+    br
+    br
+
+    | Please click here to see the full details of the students: 
+    = link_to "View Students", students_details_teacher_path(@teacher.id), class: "btn btn-primary"
+
+  br
+  br
+  = link_to "Back", teachers_path

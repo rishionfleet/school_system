@@ -1,0 +1,21 @@
+= form_for @subject_new do |f|
+  table
+    tr
+      .form-group
+        tr
+          td
+            = f.label :name, "Name"
+          td
+            = f.text_field :name, :maxlength => 32, required: true
+
+    tr  
+      .form-group
+        tr
+          td
+            = f.label :description, "Description"
+          td
+            = f.text_field :description, :maxlength => 32, required: true
+  
+  .actions
+    .add_subject_submit
+      = f.submit :class => "btn btn-primary pull-right", :id => "add_subject_submit"

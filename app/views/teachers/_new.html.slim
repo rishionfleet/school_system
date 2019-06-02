@@ -1,0 +1,27 @@
+= form_for @teacher do |f|
+  table
+    tr
+      .form-group
+        tr
+          td
+            = f.label :name, "Name"
+          td
+            = f.text_field :name, :maxlength => 32, required: true
+
+      .form-group
+        tr
+          td
+            = f.label :education, "Education"
+          td
+            = f.select :education, ["Graduate", "Masters"]
+
+      .form-group
+        tr
+          td
+            = f.label :subject, "Subject(s)"
+          td
+            = f.collection_select(:subject_ids, @subjects, :id, :name, {:prompt => nil}, {:multiple => true})
+  
+  .actions
+    .add_teacher_submit
+      = f.submit :class => "btn btn-primary pull-right", :id => "add_teacher_submit"

@@ -1,0 +1,38 @@
+= form_for @student do |f|
+
+  table
+    tr
+      .form-group
+        tr
+          td
+            = f.label :name, "Name"
+          td
+            = f.text_field :name, :maxlength => 32, required: true
+
+    tr
+      .form-group
+        tr
+          td
+            = f.label :roll_number, "Number"
+          td
+            = f.number_field :roll_number, required: true, in: 1..10000
+    
+    tr
+      .form-group
+        tr
+          td
+            = f.label :city, "City"
+          td
+            = f.text_field :city, :maxlength => 32, required: true
+
+    tr
+      .form-group
+        tr
+          td
+            = f.label :subject, "Subject(s)"
+          td
+            = f.collection_select(:subject_ids, @subjects, :id, :name, {}, {:multiple => true})
+    
+  .actions
+    .add_student_submit
+      = f.submit :class => "btn btn-primary pull-right", :id => "add_student_submit"

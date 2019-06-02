@@ -1,0 +1,30 @@
+div
+  br
+  br
+  p
+    | Details of all the teachers for #{@student.name}:
+    br
+    br
+
+    table.table-hover.table-bordered
+      thead
+        tr
+          th
+            | S. No.
+          th
+            | Name
+          th
+            | Education
+      tbody
+        - @teachers_details.each.with_index do |t, i|
+          tr
+            td
+              = i + 1
+            td
+              = t.name
+            td
+              = t.education
+
+  br
+  br
+  = link_to "Back", student_path, id: @student.id

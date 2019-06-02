@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+html
+  head
+    title
+      | School
+      = csrf_meta_tags
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+
+  body
+    header.navbar-fixed-top.py-4
+      = link_to "Subjects", subjects_path, id: "home-button"
+      = link_to "Teachers", teachers_path, id: "home-button"
+      = link_to "Students", students_path, id: "home-button"
+      = link_to "Home", home_show_path, id: "home-button"
+      h1.container.text-center
+        | School Application
+    div.main-body
+      = yield
+    footer.navbar-fixed-bottom.py-4
+      h5.container.text-center
+        | Contact us: schoot@education.com

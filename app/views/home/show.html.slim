@@ -1,0 +1,75 @@
+div.text-success
+  - if flash[:notice]
+    = flash[:notice]
+
+h3.home-heading
+  | Welcome to the School Application.
+
+ul.nav.nav-pills.nav-justified
+  li.active#teachers-tab
+    a href="#" data-toggle="tab"
+      | Teachers
+  li#students-tab
+    a href="#" data-toggle="tab"
+      | Students
+  li#subjects-tab
+    a href="#" data-toggle="tab"
+      | Subjects
+
+.tab-content
+  .tab-pane.active#teachers-tab
+    | There are total #{@teacher_count} teachers registered. Please click here to see all teachers: 
+    = link_to "View Teachers", teachers_path, class: "btn btn-primary"
+    br
+    br
+    
+    | Click here to add new teacher: 
+    button.btn.btn-primary type="button" data-toggle="modal" data-target="#new-teacher"
+      | Add new Teacher
+    #new-teacher.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            .modal-title
+              h4
+                | Enter teacher's details:
+            .modal-body
+              = render 'teachers/new'
+
+  .tab-pane#students-tab
+    | There are total #{@student_count} students registered. Please click here to see all students: 
+    = link_to "View Students", students_path, class: "btn btn-primary"
+    br
+    br
+
+    | Click here to add new teacher: 
+    button.btn.btn-primary type="button" data-toggle="modal" data-target="#new-students"
+      | Add new Student
+    #new-students.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            .modal-title
+              h4
+                | Enter student's details:
+            .modal-body
+              = render 'students/new'
+
+  .tab-pane#subjects-tab
+    | There are total #{@subject_count} subjects registered. Please click here to see all subjects: 
+    = link_to "View Subjects", subjects_path, class: "btn btn-primary"
+    br
+    br
+
+    | Click here to add new teacher: 
+    button.btn.btn-primary type="button" data-toggle="modal" data-target="#new-subjects"
+      | Add new Subject
+    #new-subjects.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            .modal-title
+              h4
+                | Enter subject's details:
+            .modal-body
+              = render 'subjects/new'
