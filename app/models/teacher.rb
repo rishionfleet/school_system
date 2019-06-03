@@ -4,7 +4,6 @@ class Teacher < ApplicationRecord
 
   attr_accessor :subject_ids
 
-
   validates :name, format: { with: /[[:word:]]/ , message: "Only letters allowed." }
   validates :education, inclusion: { in: ["Graduate", "Masters"] }
 

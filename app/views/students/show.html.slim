@@ -5,7 +5,7 @@ div
 
   h2
     = @student.name
-    = link_to "Delete Student", student_path(@student.id), method: "delete", class: "btn btn-danger delete-record"
+    = link_to "Delete Student", student_path(@student.id, authenticity_token: form_authenticity_token), method: :delete, class: "btn btn-danger delete-record"
     button.btn.btn-primary.delete-record type="button" data-toggle="modal" data-target="#edit-student"
       | Edit Student
     // = link_to "Edit Student", student_path(@student.id), method: "patch", class: "btn btn-primary delete-record", type="button" data-toggle="modal" data-target="#edit-student"

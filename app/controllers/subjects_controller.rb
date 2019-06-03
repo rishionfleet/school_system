@@ -1,13 +1,14 @@
 class SubjectsController < ApplicationController
-  def index
-    @subjects = Subject.all
-  end
 
   def create
-    subject = Subject.new(subject_params)
-    subject.save
-    flash[:notice] = "Subject '#{subject.name}' created successfully."
+    @subject = Subject.new(subject_params)
+    @subject.save
+    flash[:notice] = "Subject '#{@subject.name}' created successfully."
     redirect_to '/'
+  end
+
+  def index
+    @subjects = Subject.all
   end
 
   private

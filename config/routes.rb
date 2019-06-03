@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'home#show'
+  root 'home#index'
 
-  get 'home/show'
+  get 'home/index'
 
   resources :students, only: [:create, :index, :show, :destroy, :update] do
     member do

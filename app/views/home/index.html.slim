@@ -18,7 +18,7 @@ ul.nav.nav-pills.nav-justified
 
 .tab-content
   .tab-pane.active#teachers-tab
-    | There are total #{@teacher_count} teachers registered. Please click here to see all teachers: 
+    | There are total #{teacher_count} teachers registered. Please click here to see all teachers: 
     = link_to "View Teachers", teachers_path, class: "btn btn-primary"
     br
     br
@@ -37,7 +37,7 @@ ul.nav.nav-pills.nav-justified
               = render 'teachers/new'
 
   .tab-pane#students-tab
-    | There are total #{@student_count} students registered. Please click here to see all students: 
+    | There are total #{student_count} students registered. Please click here to see all students: 
     = link_to "View Students", students_path, class: "btn btn-primary"
     br
     br
@@ -56,7 +56,7 @@ ul.nav.nav-pills.nav-justified
               = render 'students/new'
 
   .tab-pane#subjects-tab
-    | There are total #{@subject_count} subjects registered. Please click here to see all subjects: 
+    | There are total #{subject_count} subjects registered. Please click here to see all subjects: 
     = link_to "View Subjects", subjects_path, class: "btn btn-primary"
     br
     br

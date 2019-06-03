@@ -1,7 +1,7 @@
 div
   h2
     = @teacher.name
-    = link_to "Delete Teacher", teacher_path(@teacher.id), method: "delete", class: "btn btn-danger delete-record"
+    = link_to "Delete Teacher", teacher_path(@teacher.id, authenticity_token: form_authenticity_token), method: :delete, class: "btn btn-danger delete-record"
   h4
     | (#{@teacher.education})
   br

@@ -3,8 +3,8 @@ html
   head
     title
       | School
-      = csrf_meta_tags
-
+    
+    = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
@@ -14,7 +14,7 @@ html
       = link_to "Subjects", subjects_path, id: "home-button"
       = link_to "Teachers", teachers_path, id: "home-button"
       = link_to "Students", students_path, id: "home-button"
-      = link_to "Home", home_show_path, id: "home-button"
+      = link_to "Home", home_index_path, id: "home-button"
       h1.container.text-center
         | School Application
     div.main-body

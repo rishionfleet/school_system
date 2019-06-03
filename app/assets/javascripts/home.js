@@ -16,4 +16,17 @@ $(document).ready(function() {
     $('.tab-pane#students-tab').removeClass('active')
   })
 
+  $('#new_teacher').submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url : "/teachers",
+      data: $("#new_teacher").serialize(), // serializes the form's elements.
+      success: function(data)
+      {
+        window.location.reload()
+      }
+    });
+  });
+
 })

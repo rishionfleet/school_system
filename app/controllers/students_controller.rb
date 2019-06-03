@@ -1,13 +1,12 @@
 class StudentsController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:destroy]
+  # skip_before_action :verify_authenticity_token, only: [:destroy]
 
   def create
-    student = Student.new(student_params)
-    subject_ids = unsafe_params["student"]["subject_ids"]
-    student.subjects = Subject.where(id: unsafe_params["student"]["subject_ids"])
-    student.save
-    flash[:notice] = "Student '#{student.name}' created successfully."
+    @student = Student.new(student_params)
+    @student.subjects = Subject.where(id: unsafe_params["student"]["subject_ids"])
+    @student.save
+    flash[:notice] = "Student '#{@student.name}' created successfully."
     redirect_to '/'
   end
 
@@ -27,18 +26,18 @@ class StudentsController < ApplicationController
   end
 
   def update
-    student = Student.find_by_id(params["id"])
-    student.update_attributes(name: params["student"]["name"], roll_number: params["student"]["roll_number"], city: params["student"]["city"] )
-    student.subjects = Subject.where(id: params["student"]["subject_ids"])
-    student.save
-    flash[:notice] = "Student '#{student.name}' edited successfully."
+    @student = Student.find_by_id(params["id"])
+    @student.update_attributes(name: params["student"]["name"], roll_number: params["student"]["roll_number"], city: params["student"]["city"] )
+    @student.subjects = Subject.where(id: params["student"]["subject_ids"])
+    @student.save
+    flash[:notice] = "Student '#{@student.name}' edited successfully."
     redirect_to student_path, id: params["id"]
   end
 
   def destroy
-    student = Student.find_by_id(params["id"])
-    flash[:notice] = "Student: '#{student.name}' deleted permanently."
-    student.destroy
+    @student = Student.find_by_id(params["id"])
+    flash[:notice] = "Student: '#{@student.name}' deleted permanently."
+    @student.destroy
     redirect_to students_path
   end
 
