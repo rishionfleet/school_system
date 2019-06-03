@@ -21,7 +21,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url : "/teachers",
-      data: $("#new_teacher").serialize(), // serializes the form's elements.
+      data: $('#new_teacher').serialize(), // serializes the form's elements.
       success: function(data)
       {
         window.location.reload()

@@ -19,8 +19,12 @@
         tr
           td
             = f.label :subject, "Subject(s)"
-          td
-            = f.collection_select(:subject_ids, @subjects, :id, :name, {:prompt => nil}, {:multiple => true})
+          - unless @subjects.empty?
+            td
+              = f.collection_select(:subject_ids, @subjects, :id, :name, {:prompt => nil}, {:multiple => true})
+          - else
+            td
+              | No subjects to select.
   
   .actions
     .add_teacher_submit

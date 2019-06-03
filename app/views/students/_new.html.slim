@@ -25,13 +25,18 @@
           td
             = f.text_field :city, :maxlength => 32, required: true
 
+    
     tr
       .form-group
         tr
           td
             = f.label :subject, "Subject(s)"
-          td
-            = f.collection_select(:subject_ids, @subjects, :id, :name, {}, {:multiple => true})
+          - unless @subjects.empty?
+            td
+              = f.collection_select(:subject_ids, @subjects, :id, :name, {}, {:multiple => true})
+          - else
+            td
+              | No subjects to select.
     
   .actions
     .add_student_submit

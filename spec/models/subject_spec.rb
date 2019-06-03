@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Subject, type: :model do
+
   let(:subject) { create(:subject) }
 
   describe "ActiveModel validations" do

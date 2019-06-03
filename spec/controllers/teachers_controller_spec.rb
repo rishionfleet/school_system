@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe TeachersController, type: :controller do
 
+  let(:teacher) { create(:teacher) }
+
   describe "POST #create" do
     it "should be success request" do
       post :create, params: { teacher: {name: 'Tom', education: "Graduate" } }
@@ -14,8 +16,7 @@ RSpec.describe TeachersController, type: :controller do
 
   describe "GET #show" do
     it "should be success request" do
-      id = Teacher.first.id
-      get :show, params: { id: id }
+      get :show, params: { id: teacher.id }
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:show)
       expect(response.headers["Content-Type"]).to eq "text/html; charset=utf-8"
@@ -35,8 +36,7 @@ RSpec.describe TeachersController, type: :controller do
 
   describe "GET #teachers_details" do
     it "should be success request" do
-      id = Teacher.first.id
-      get :students_details, params: { id: id }
+      get :students_details, params: { id: teacher.id }
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:students_details)
       expect(response.headers["Content-Type"]).to eq "text/html; charset=utf-8"
@@ -47,13 +47,12 @@ RSpec.describe TeachersController, type: :controller do
 
   describe "POST #destroy" do
     it "should be success a request" do
-      id, name = Teacher.pluck(:id, :name).first
-      post :destroy, params: { id: id}
+      post :destroy, params: { id: teacher.id}
       expect(response).to have_http_status(302)
       expect(response).to redirect_to(teachers_path)
       expect(response.headers["Content-Type"]).to eq "text/html; charset=utf-8"
       expect(assigns(:teacher)).to be_kind_of(Teacher)
-      expect(flash[:notice]).to eq "Teacher '#{name}' deleted permanently."
+      expect(flash[:notice]).to eq "Teacher '#{teacher.name}' deleted permanently."
     end
   end
 

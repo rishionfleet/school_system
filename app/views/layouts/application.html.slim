@@ -11,11 +11,12 @@ html
 
   body
     header.navbar-fixed-top.py-4
-      = link_to "Subjects", subjects_path, id: "home-button"
-      = link_to "Teachers", teachers_path, id: "home-button"
-      = link_to "Students", students_path, id: "home-button"
-      = link_to "Home", home_index_path, id: "home-button"
-      h1.container.text-center
+      div.heading
+        = link_to "Subjects", subjects_path, id: "home-button"
+        = link_to "Teachers", teachers_path, id: "home-button"
+        = link_to "Students", students_path, id: "home-button"
+        = link_to "Home", home_index_path, id: "home-button"
+      h1.heading
         | School Application
     div.main-body
       = yield

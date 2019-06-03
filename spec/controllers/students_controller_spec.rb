@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe StudentsController, type: :controller do
 
+  let(:student) { create(:student) }
+
   describe "POST #create" do
     it "should be success request" do
       post :create, params: { student: {name: 'Tom', roll_number: 223, city: 'Delhi'} }
@@ -15,8 +17,7 @@ RSpec.describe StudentsController, type: :controller do
 
   describe "GET #show" do
     it "should be success request" do
-      id = Student.first.id
-      get :show, params: { id: id }
+      get :show, params: { id: student.id }
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:show)
       expect(response.headers["Content-Type"]).to eq "text/html; charset=utf-8"
@@ -37,8 +38,7 @@ RSpec.describe StudentsController, type: :controller do
 
   describe "GET #teachers_details" do
     it "should be success request" do
-      id = Student.first.id
-      get :teachers_details, params: { id: id }
+      get :teachers_details, params: { id: student.id }
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:teachers_details)
       expect(response.headers["Content-Type"]).to eq "text/html; charset=utf-8"
@@ -49,8 +49,7 @@ RSpec.describe StudentsController, type: :controller do
 
   describe "PUT #update" do
     it "should be success a request" do
-      id = Student.first.id
-      put :update, params: { id: id, student: {name: 'Tom', roll_number: 223, city: 'Delhi'} }
+      put :update, params: { id: student.id, student: {name: 'Tom', roll_number: 223, city: 'Delhi'} }
       expect(response).to have_http_status(302)
       expect(response).to redirect_to(student_path)
       expect(response.headers["Content-Type"]).to eq "text/html; charset=utf-8"
@@ -61,13 +60,12 @@ RSpec.describe StudentsController, type: :controller do
 
   describe "POST #destroy" do
     it "should be success a request" do
-      id, name = Student.pluck(:id, :name).first
-      post :destroy, params: { id: id}
+      post :destroy, params: { id: student.id}
       expect(response).to have_http_status(302)
       expect(response).to redirect_to(students_path)
       expect(response.headers["Content-Type"]).to eq "text/html; charset=utf-8"
       expect(assigns(:student)).to be_kind_of(Student)
-      expect(flash[:notice]).to eq "Student: '#{name}' deleted permanently."
+      expect(flash[:notice]).to eq "Student: '#{student.name}' deleted permanently."
     end
   end
 

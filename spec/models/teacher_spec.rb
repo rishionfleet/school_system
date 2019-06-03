@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Teacher, type: :model do
+  
   let(:teacher) { build(:teacher) }
 
   describe "ActiveModel validations" do
