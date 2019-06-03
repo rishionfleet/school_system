@@ -2,7 +2,7 @@
 
 Task Description:
 
-Develop a website using RoR and any client side framework of your choice to develop the test website. Commit your code to your GIT repository and give us access at vdua@vikisha.in
+Develop a website using RoR and any client side framework of your choice to develop the test website.
 
 Please consider the following requirements:
 
